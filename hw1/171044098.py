@@ -6,11 +6,13 @@ class HW1:
     def __init__(self):
         # write class variables here.
         self.__data = None
+        self.__countries = None
 
     def get_results(self):
-        # only public method
+        # this is only public method to calculate all results
         sheet = openpyxl.load_workbook("owid-covid-data.xlsx", data_only=True)
         self.__data = sheet.active
+        self.__countries = self.__data["C"]
         self.__q1()
 
     def __q1(self):
@@ -20,21 +22,46 @@ class HW1:
 
     def __q2(self):
         dates = self.__data["D"]
-        my_list = []
-        for date in dates:
-            my_list.append(date.value)
+        my_list = self.__get_list(dates)
         # get rid of repeated elements
         # unique_dates = self.__get_set(dates)
         # sorted_dates = sorted(unique_dates, key=lambda x: tuple(map(int, x.split('-'))))
         min_date = min(my_list)
-        indexes = [i for i, x in enumerate(my_list) if x == min_date]
-        countries = self.__data["C"]
+        print(min_date)
+        indexes = [i for i, date in enumerate(my_list) if date == min_date]
         for index in indexes:
-            print(countries[index].value)
+            print(self.__countries[index].value)
+
+    def __q3(self):
+        total_cases = self.__data["E"]
+        my_set = set()
+        indexes = []
+        i = 1
+        for country in self.__countries:
+            size = len(my_set)
+            my_set.add(country.value)
+            if len(my_set) != size:
+                indexes.append(i - 1)
+            i = i + 1
+        for index in indexes[2:]:
+            print(self.__countries[index - 1].value, " ", total_cases[index - 1].value)
+
+    def __q4(self):
+        total_deaths = self.__data["H"]
+        my_set = set()
+        indexes = []
+        i = 1
+        for country in self.__countries:
+            size = len(my_set)
+            my_set.add(country.value)
+            if len(my_set) != size:
+                indexes.append(i - 1)
+            i = i + 1
+        for index in indexes[2:]:
+            print(self.__countries[index - 1].value, " ", total_deaths[index - 1].value)
 
     """
-    def __q3(self):
-    def __q4(self):
+
     def __q5(self):
     def __q6(self):
     def __q7(self):
@@ -55,6 +82,12 @@ class HW1:
         for element in data:
             my_set.add(element.value)
         return my_set
+
+    def __get_list(self, data):
+        my_list = []
+        for element in data:
+            my_list.append(element.value)
+        return my_list
 
 
 a = HW1()
