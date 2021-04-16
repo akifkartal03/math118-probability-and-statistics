@@ -1,6 +1,7 @@
 import openpyxl
 import statistics
 
+
 class HW1:
 
     def __init__(self):
@@ -63,31 +64,29 @@ class HW1:
             print(self.__countries[index - 1], " ", total_deaths[index - 1])
 
     def __q5(self):
-        reproduction_rate = self.__get_list(self.__data["Q"])
-        my_set = set()
-        rate_list = []
-        i = 0
-        for country in self.__countries:
-            size = len(my_set)
-            my_set.add(country)
-            if len(my_set) == size or i == 0:
-                rate_list.append(reproduction_rate[i])
-            else:
-                avg = round(sum(rate_list)/len(rate_list),2)
-                minimum = min(rate_list)
-                maximum = max(rate_list)
-                variation = statistics.variance(rate_list)
-                rate_list = [reproduction_rate[i]]
-            i = i + 1
-    """
+        self.__common_5to13("Q")
+
     def __q6(self):
+        self.__common_5to13("R")
+
     def __q7(self):
+        self.__common_5to13("T")
     def __q8(self):
+        self.__common_5to13("V")
     def __q9(self):
+        self.__common_5to13("X")
     def __q10(self):
+        self.__common_5to13("Z")
+
     def __q11(self):
+        self.__common_5to13("V")
+
     def __q12(self):
+        self.__common_5to13("V")
+
     def __q13(self):
+    """
+
     def __q14(self):
     def __q15(self):
     def __q16(self):
@@ -106,6 +105,34 @@ class HW1:
             my_list.append(element.value)
         return my_list
 
+    def __common_5to13(self, column):
+        rate = self.__get_list(self.__data[column])
+        my_set = set()
+        rate_list = []
+        i = 0
+        for country in self.__countries:
+            size = len(my_set)
+            my_set.add(country)
+            if len(my_set) == size or i == 0:
+                if rate[i] is not None:
+                    rate_list.append(rate[i])
+            else:
+                ct_name = self.__countries[i - 1]
+                avg = None
+                minimum = None
+                maximum = None
+                variation = None
+                if len(rate_list) >= 1:
+                    avg = round(sum(rate_list) / len(rate_list), 2)
+                    minimum = min(rate_list)
+                    maximum = max(rate_list)
+                if len(rate_list) >= 2:
+                    variation = round(statistics.variance(rate_list), 2)
+                if rate[i] is not None:
+                    rate_list = [rate[i]]
+                else:
+                    rate_list = []
+            i = i + 1
 
 
 a = HW1()

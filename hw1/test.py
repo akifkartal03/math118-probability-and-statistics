@@ -20,13 +20,16 @@ for country in c_list:
     size = len(my_set)
     my_set.add(country)
     if len(my_set) == size or i == 0:
-        rate_list.append(my_list[i])
+        if my_list[i] is not None:
+            rate_list.append(my_list[i])
     else:
         print(c_list[i-1])
         print(rate_list)
-        print("max:", statistics.variance(rate_list))
-        rate_list = [my_list[i]]
-
+        print("max:", min([5]))
+        if my_list[i] is not None:
+            rate_list = [my_list[i]]
+        else:
+            rate_list = []
     i = i + 1
 
 """
