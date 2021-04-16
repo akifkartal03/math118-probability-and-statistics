@@ -1,10 +1,39 @@
 import openpyxl
-
+import statistics
 wb_obj = openpyxl.load_workbook("Grades.xlsx", data_only=True)
 sheet = wb_obj.active
-values = sheet["K"]
-grades = sheet["L"]
-myset = set()
+values = sheet["A"]
+countries = sheet["K"]
+my_list = []
+c_list = []
+reproduction_rate = sheet["M"]
+
+my_set = set()
+rate_list = []
+i = 0
+for element in countries[1:]:
+    c_list.append(element.value)
+for element in reproduction_rate[1:]:
+    my_list.append(element.value)
+
+for country in c_list:
+    size = len(my_set)
+    my_set.add(country)
+    if len(my_set) == size or i == 0:
+        rate_list.append(my_list[i])
+    else:
+        print(c_list[i-1])
+        print(rate_list)
+        print("max:", statistics.variance(rate_list))
+        rate_list = [my_list[i]]
+
+    i = i + 1
+
+"""
+for element in values[1:]:
+    my_list.append(element.value)
+print(my_list)
+
 indexes = []
 i = 1
 for element in values:
@@ -18,7 +47,7 @@ for element in values:
 for index in indexes[2:]:
     print(values[index - 1].value, " ", grades[index - 1].value)
 
-"""
+
 mylist = []
 for user in values:
     mylist.append(user.value)
