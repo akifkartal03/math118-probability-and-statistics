@@ -58,10 +58,10 @@
 \begin{titlepage}
 
 	\begin{flushright}
-	\textsc{\large April 12, 2021} \\
+	\textsc{\large April 17, 2021} \\
 	\end{flushright}
 	\begin{center}
-	\Large{\bfseries GTU Department of Computer Engineering \\ CSE344 - Spring 2021 \\ Homework 2 Report  } \\
+	\Large{\bfseries GTU Department of Computer Engineering \\ MATH118 - Spring 2021 \\ Homework 1 Report  } \\
 	\end{center}
 	\topskip0pt
 	\vspace*{\fill}
@@ -74,92 +74,20 @@
 
 \cleardoublepage
 \section{Problem Definition}
-The problem is to estimate these 8 functions through polynomial interpolation using the Lagrange form 
-in two rounds with signals. 
-
-\section{Solution}
-\subsection{Some Problems}
-\subsubsection{Same Signal Multiple Times}
-In the 1st round each child will let the process m know (via a signal) that it has finished 
-its calculations. But the problem was here, because of same signal type sending multiple times,
-kernel convert it into one signal therefore we can't recognize last child finished its job.
-\subsubsection{Solution}
-To solve this problem I used \textbf{sigsupend} as recommended in this Homework. After 8 child created parent
-will signal them one by one such that you can start to work now.
-\subsubsection{Validation Coordinate}
-In homework document since in 1st round there will be using 6 coordinate I assumed 7th coordinate
-as for validitaion for fist round and I solved the problem according to this. In second round 8th coordinate was
-used for validation.
-\subsection{Error Handling}
-In order to handle any error \textbf{stderr} used with \textbf{write system call} and \textbf{exit} system call was used.
+The problem is to make some operation on covid19 data by using python programming language.
+\section{System Requirements}
+In order to run program you need to install followings;
 \begin{itemize}
-	\item \textbf{Note:} In this part \textbf{fprintf library function was not used}. Instead write system call was used.
-\end{itemize}
-Following code shows an example of this;
-\begin{lstlisting}[style=CStyle]
-void myStderr(const char *str)
-{
-    ssize_t size = strlen(str);
-    if (size != write(STDERR_FILENO, str, size))
-    {
-        perror("write system call error! ");
-        exit(EXIT_FAILURE);
-    }
-}
-\end{lstlisting}
-\textbf{Usage:}
-\begin{lstlisting}[style=CStyle]
-int rd = read(fd, buf, size);
-if (rd == -1)
-{
-    myStderr("reading error!\n");
-    exit(EXIT_FAILURE);
-}
-return rd; 
-\end{lstlisting}
-\subsection{Synchronization between Process}
-In 1st round synchronization provided mostly by using \textbf{sigsuspend and file locks}. In 2nd round
-synchronization provided by using \textbf{waitpid and sigsuspend system calls and file locks.}.
-
-\subsection{CTRL-C Handling}
-In order to give a message on CTRL-C interrupt, I used \textbf{sigaction} function from \textbf{signal.h} library.
-Also, I used a \textbf{global variable} to set if an interrupt has occur.
-\begin{lstlisting}[style=CStyle]
-volatile __sig_atomic_t exitSignal = 0;
-void handler2(int signum){
-    if (signum == SIGINT)
-    {
-        //In case of CTRL-C 
-        exitSignal = 1;
-    }
-    
-}
-\end{lstlisting}
-In each loop in code, signal flag was checked, on interrupt signal, resources was given back and exited elegantly.
-\subsection{Finding Coefficents}
-To find 7 coefficients of each polynomial’s, I implemented following formula; \\ \\
-\begin{figure}[H]
-    \centering
-	\includegraphics[width=6in, height=3in]{formula.JPG}
-	\caption[Optional caption]{}
-	\label{}
-\end{figure} 
-\cleardoublepage
-\section{Test Result} 
-A simple test result with given example file is following;
-\begin{figure}[H]
-    \centering
-	\includegraphics[width=6in, height=3in]{result.JPG}
-	\caption[Optional caption]{}
-	\label{}
-\end{figure}                              
-\section{References that was used} 
-While doing this howemork following references was used;
-\begin{itemize}
-	\item Course Textbook Listing 26-5: Reaping dead children via a handler for SIGCHLD
-	\item Lagrange’s Interpolation
-	\item Determinant Operation
-\end{itemize}
-\textbf{Note:}Homework was finished as expected. Only problem in 1st round to make error calculation
-7th coordinate was used \textbf{not last one}.
+	\item Python
+	\item openpyxl library for python.
+	\item any other library if needed.
+	\item \textbf{owid-covid-data.xlsx} file in same directory.
+\end{itemize} 
+After running wait a few minute program to finish, then \textbf{output.csv} file will be created.
+\section{Question 19}
+About this question my observations are following;
+\begin{enumerate}
+  \item If the median age is low in a country, then both cases and deaths is low
+  \item The numbers starts at 1 with every call to the enumerate environment.
+\end{enumerate}
 \end{document}
