@@ -1,5 +1,41 @@
 import openpyxl
 import statistics
+from openpyxl.workbook import Workbook
+from openpyxl.styles import Font,NamedStyle
+
+
+header = ['Name', 'Email', 'Mobile', 'Current location']
+new_data = [['name1', 'email1@yahoo.com', 9929283421.0, 'xxxx'],
+            ['name2', 'email2@xyz.com', 9994191988.0, 'xxxx']]
+
+wb = Workbook()
+
+dest_filename = 'test_book.xlsx'
+
+ws1 = wb.active
+header_style = NamedStyle(name="header_style")
+header_style.font = Font(bold=True)
+ws1.append(header)
+header_row = ws1[1]
+for cell in header_row:
+    cell.style = header_style
+
+for row in new_data:
+    ws1.append(row)
+
+
+wb.save(filename = dest_filename)
+
+"""
+workbook = Workbook()
+sheet = workbook.active
+
+sheet["A1"] = "hello"
+sheet["B1"] = "world!"
+
+workbook.save(filename="hello_world.xlsx")
+
+
 wb_obj = openpyxl.load_workbook("Grades.xlsx", data_only=True)
 sheet = wb_obj.active
 values = sheet["A"]
@@ -32,7 +68,7 @@ for country in c_list:
             rate_list = []
     i = i + 1
 
-"""
+
 for element in values[1:]:
     my_list.append(element.value)
 print(my_list)
