@@ -188,19 +188,19 @@ class HW1:
         for country in self.__countries:
             size = len(my_set)
             my_set.add(country)
-            if total[i - 1] is not None:
-                temp[k] = total[i - 1]
             if len(my_set) != size:
                 indexes.append(i - 1)
                 temp.append(None)
                 k = k + 1
+            if total[i - 1] is not None:
+                temp[k] = total[i - 1]
             i = i + 1
         i = 0
         for index in indexes[1:]:
             if total[index - 1] is not None:
                 res = total[index - 1]
             else:
-                res = temp[i + 1]
+                res = temp[i+1]
             if question == 3:
                 if i == 0:
                     self.__result[i] = [self.__countries[index - 1], res]
