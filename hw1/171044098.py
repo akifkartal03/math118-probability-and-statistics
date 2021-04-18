@@ -213,7 +213,7 @@ class HW1:
 
     def __write_summary(self):
         o_wb = Workbook()
-        out_filename = 'output2.csv'
+        out_filename = 'output.csv'
         o_sheet = o_wb.active
         for row in self.__summary:
             o_sheet.append(row)
