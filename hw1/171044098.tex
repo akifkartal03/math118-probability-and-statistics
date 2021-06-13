@@ -172,9 +172,17 @@
 	\begin{block}{Probability Trees}
 		This is a useful device to calculate probabilities when using the probability rules.
 	\end{block}
+	\begin{columns}
+	\column{0.5\textwidth}
 	\begin{figure}
 		\includegraphics[width=4cm, height=4cm]{test.jpg}
 	\end{figure}
+	\column{0.5\textwidth}
+	\begin{itemize}
+		\item We multiply probabilities along the branches.
+		\item We add probabilities down columns.
+	\end{itemize}
+	\end{columns}
 	}
 	\frame{
 	\begin{example}
@@ -248,20 +256,60 @@ not receive an offer from university A?
 	\frame{
 	\begin{alertblock}{Solution cont.}
 		
-		\begin{enumerate}[i]
-			\item $P(A \cap B) = \text{?}$
+		\begin{enumerate}[iii]
+\item If she receives an offer from university B, what is the probability that she will not receive an offer from university A?
 		\end{enumerate}
+		Let;
+		\newline
+		\newline
+		P(D) = receiving offer from university B and not receiving offer from university A.
+		\newline
+		\newline
+		P(B) = receiving offer from university B
+		\newline
+		\newline
+		$ P(A \cap B) = $ receiving offer from university A and receiving offer from university B
+		\newline
+		\newline
+		Then P(D) will be;
+		\[ P(D) = P(B) - P(A \cap B) \]
+		\[ P(D) = 0.5 - 0.4 = 0.1\]
+	\end{alertblock}
+	}
+	\frame{
+	\begin{alertblock}{Solution cont.}
+		
+		Let;
+		\newline
+		\newline
+		$P(E) = $  not receiving offer from university A, Then;
+		\[P(E) = 1 - 0.6 = 0.4\]
+		Let;
+		\newline
+		\newline
+		$P(B \mid E)$ = receiving offer from university B $\mid$ not receiving offer from university A
+		\newline
+		\newline
+		Then $P(B \mid E)$ will be;
+		\[ P(B \mid E) = \frac{\text{receiving offer from uni. B and not receiving offer from uni. A}}{\text{not receiving offer from university A}} \]
+		\[ P(B \mid E) = \frac{P(D)}{P(E)} = \frac{0.1}{0.4} = 0.25 \]
 		
 	\end{alertblock}
 	}
 	\frame{
-	
+	\frametitle{Summary}
+	\begin{itemize}
+		\item First, we understand what is probability, event  and probability of an event.
+		\item We see some of basic examples of the probability.
+		\item Then, we study conditional probability.
+		\item With conditional probability, we see Multiplication Rule, Addition Rule and Probability Trees.
+		\item Lastly, we have finished with a good example of conditional probability.
+	\end{itemize}
+	\begin{columns}
+	\column{0.65\textwidth}
+	\textbf{Thank You...}
+	\column{0.35\textwidth}
+	\includegraphics[width=4cm, height=3cm]{last.jpg}
+	\end{columns}
 	}
-	\frame{
-	
-	}
-	\frame{
-	
-	}
-	
 \end{document}
