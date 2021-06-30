@@ -1,2 +1,2 @@
-### Make Presentation about Probality of an event and Conditional Probality.
+### Make Presentation about Probability of an event and Conditional Probability.
 
